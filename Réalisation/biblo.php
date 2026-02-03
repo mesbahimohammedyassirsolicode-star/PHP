@@ -9,7 +9,8 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      background-color: #f0f0f0;
+         background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&w=1200");
+
     }
 
     /* GRID CONTAINER */
@@ -26,7 +27,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.8);
+   background-color: rgba(255, 255, 255, 0.8);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -69,12 +70,87 @@
       width: fit-content;
       margin: auto;
     }
+/* ===== Search Form Style ===== */
+.search-form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-form form{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  border: 1px solid #ddd;
+}
+
+.search-form input{
+  width: 320px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.search-form input:focus{
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.12);
+}
+
+.search-form button{
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  background: #000;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.search-form button:hover{
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* reset link as button */
+.search-form a{
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+  transition: 0.2s;
+}
+
+.search-form a:hover{
+  background: #000;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
   </style>
 </head>
 
 <body>
-
-<?php
+<div class="search-form">
+  <form method="get">
+    <input type="text" name="search" placeholder="Search by title">
+    <button type="submit">Search</button>
+    <a href="biblo.php">Reset</a>
+  </form>
+</div>
+  <?php
 $livres = [
   [
     "code" => 1,
@@ -162,8 +238,22 @@ $livres = [
 $total = 0;
 
 echo "<div class='databook'>";
-
+// i declare it here so no error show when it empty
+$search = "";
+if (isset($_GET['search'])) {
+    // strtolower make the input value lowercase
+    $search = strtolower($_GET['search']);
+}
+$total = 0;
 foreach ($livres as $livre) {
+        // first check if it not empty
+        if ($search != "") {
+        // here i search if value is on the arr using strposition
+        if (strpos(strtolower($livre['titre']), $search) === false ) {
+            // false here make index 0 works
+            continue;
+        }
+    }
 
   echo "<div class='card'>";
 
@@ -187,6 +277,9 @@ foreach ($livres as $livre) {
 
 echo "<div class='total'>Total des livres disponibles : $total DH</div>";
 echo "</div>";
+
+
+
 ?>
 
 </body>
