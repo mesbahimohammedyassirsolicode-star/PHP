@@ -138,10 +138,8 @@
   color: #fff;
   transform: translateY(-1px);
 }
-
   </style>
 </head>
-
 <body>
 <div class="search-form">
   <form method="get">
@@ -234,11 +232,9 @@ $livres = [
     "image" => "images/the-muqaddimah.jpg"
   ]
 ];
-
 $total = 0;
-
 echo "<div class='databook'>";
-// i declare it here so no error show when it empty
+// variable for search 
 $search = "";
 if (isset($_GET['search'])) {
     // strtolower make the input value lowercase
@@ -248,39 +244,29 @@ $total = 0;
 foreach ($livres as $livre) {
         // first check if it not empty
         if ($search != "") {
-        // here i search if value is on the arr using strposition
+        // 
         if (strpos(strtolower($livre['titre']), $search) === false ) {
             // false here make index 0 works
             continue;
         }
     }
-
   echo "<div class='card'>";
-
   echo "<img class='book-img' src='{$livre['image']}' alt='{$livre['titre']}'>";
-
   echo "<p><b>Code :</b> {$livre['code']}</p>";
   echo "<p><b>Titre de livre :</b> {$livre['titre']}</p>";
   echo "<p><b>Auteur de livre :</b> {$livre['auteur']}</p>";
   echo "<p><b>Annee :</b> {$livre['annee']}</p>";
   echo "<p><b>Prix de livre :</b> {$livre['prix']} DH</p>";
-
   if ($livre['disponible']) {
     echo "<p class='dispo ok'>Disponible</p>";
     $total += $livre['prix'];
   } else {
     echo "<p class='dispo no'>Non Disponible</p>";
   }
-
   echo "</div>";
 }
-
 echo "<div class='total'>Total des livres disponibles : $total DH</div>";
 echo "</div>";
-
-
-
 ?>
-
 </body>
 </html>
