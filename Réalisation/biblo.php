@@ -245,7 +245,7 @@ foreach ($livres as $livre) {
         // first check if it not empty
         if ($search != "") {
         // 
-        if (strpos(strtolower($livre['titre']), $search) === false ) {
+        if (str_contains(strtolower($livre['titre']), $search) === false ) {
             // false here make index 0 works
             continue;
         }
@@ -257,6 +257,7 @@ foreach ($livres as $livre) {
   echo "<p><b>Auteur de livre :</b> {$livre['auteur']}</p>";
   echo "<p><b>Annee :</b> {$livre['annee']}</p>";
   echo "<p><b>Prix de livre :</b> {$livre['prix']} DH</p>";
+  //total price
   if ($livre['disponible']) {
     echo "<p class='dispo ok'>Disponible</p>";
     $total += $livre['prix'];
