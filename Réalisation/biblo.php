@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +11,6 @@
          background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&w=1200");
 
     }
-
     /* GRID CONTAINER */
     .databook {
       display: grid;
